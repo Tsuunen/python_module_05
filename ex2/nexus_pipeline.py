@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Dict, Union, Optional, Protocol
+from typing import Any, List, Dict, Protocol
 
 
 class ProcessingStage(Protocol):
@@ -157,7 +157,7 @@ if (__name__ == "__main__"):
     print("=== CODE NEXUS - ENTERPRISE PIPELINE SYSTEM ===\n")
     print("Initializing Nexus Manager...")
     manager = NexusManager()
-    print("Pipeline capacity: 1000 streams/second")
+    print("Pipeline capacity: 1000 streams/second\n")
     print("Creating Data Processing Pipeline...")
     print("Stage 1: Input validation and parsing")
     print("Stage 2: Data transformation and enrichment")
@@ -180,26 +180,26 @@ if (__name__ == "__main__"):
     print("Output:", pipe.process(input))
 
     print("\nProcessing Stream data through same pipeline...")
-    pipe = StreamAdapter(2)
+    pipe = StreamAdapter(3)
     pipe.add_stage(InputStage())
     pipe.add_stage(TransformStage())
     pipe.add_stage(OutputStage())
     input = [
-        {"sensor": "temp", "value": 18, "unit": "C"},
+        {"sensor": "temp", "value": 20, "unit": "C"},
         {"sensor": "temp", "value": 17, "unit": "C"},
         {"sensor": "temp", "value": 22, "unit": "C"},
-        {"sensor": "temp", "value": 27, "unit": "C"},
-        {"sensor": "temp", "value": 23, "unit": "C"},
+        {"sensor": "temp", "value": 28, "unit": "C"},
+        {"sensor": "temp", "value": 24, "unit": "C"},
     ]
     print("Output:", pipe.process(input))
     print("\n=== Pipeline Chaining Demo ===")
     data = {"sensor": "temp", "value": 23.5, "unit": "C"}
-    A = JSONAdapter(3)
+    A = JSONAdapter(4)
     A.add_stage(InputStage())
     A.add_stage(TransformStage())
-    B = JSONAdapter(4)
+    B = JSONAdapter(5)
     B.add_stage(TransformStage())
-    C = JSONAdapter(5)
+    C = JSONAdapter(6)
     C.add_stage(OutputStage())
     manager.add_pipeline(A)
     manager.add_pipeline(B)
